@@ -73,11 +73,6 @@ kdf.derive: unknown type 19823718236128632
 --- config
     location =/t {
         content_by_lua_block {
-            -- boringssl has pbkdf2 working, but not github actions, why?
-            if require("resty.openssl.version").BORINGSSL and _G.on_github_actions then
-                ngx.say("cDRFLQ7NWt+AP4i0TdBzog==")
-                ngx.exit(0)
-            end
             local kdf = require("resty.openssl.kdf")
             local key = myassert(kdf.derive({
                 type = kdf.PBKDF2,

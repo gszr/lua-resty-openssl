@@ -8,9 +8,9 @@ local OPENSSL_30 = require("resty.openssl.version").OPENSSL_30
 
 ffi.cdef [[
   /* KDF */
-  int PKCS5_PBKDF2_HMAC(const char *pass, int passlen,
-    const unsigned char *salt, int saltlen, int iter,
-    const EVP_MD *digest, int keylen, unsigned char *out);
+  int PKCS5_PBKDF2_HMAC(const char *pass, size_t passlen,
+    const uint8_t *salt, size_t saltlen, unsigned iter,
+    const EVP_MD *digest, size_t keylen, uint8_t *out);
 
   int EVP_PBE_scrypt(const char *pass, size_t passlen,
     const unsigned char *salt, size_t saltlen,
